@@ -1,0 +1,48 @@
+﻿@model UsersModel
+
+
+<div style="border-top: 5px solid #bc0643;" class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Registration Form</h2>
+        </div>
+        <div style="margin: 19px 42px;" class="row clearfix">
+            <div class="">
+                <form asp-controller="Users" asp-action="Login" method="post" role="form">
+
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <span class="text-danger"> @TempData["error"]</span>
+
+
+
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input asp-for=Email type="email" placeholder="Email" required />
+
+                    </div>
+
+
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input asp-for=Password type="password" placeholder="Password" required />
+
+                    </div>
+
+
+
+                    <input style="background: #dc3545;" class="button" type="submit" value="Login" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p style="color:red" class="credit">Developed by Design the way</p>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

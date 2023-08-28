@@ -1,0 +1,89 @@
+﻿@model UsersModel
+
+
+<div style="border-top: 5px solid #bc0643;" class="form_wrapper">
+    <div class="form_container">
+        <div class="title_container">
+            <h2>Registration Form</h2>
+        </div>
+        <div style="margin: 19px 42px;" class="row clearfix">
+            <div class="">
+                <form asp-controller="Users" asp-action="Register" method="post" role="form">
+                   
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <span class="text-danger"> @TempData["error"]</span>
+                    <span class="text-primary"> @TempData["Congrants"]</span>
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                        <input asp-for=FirstName type="text"  placeholder="First Name" required />
+                        
+                    </div>
+                   
+                    <span asp-validation-for="secondName" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                        <input asp-for=secondName type="text" placeholder="second Name" required />
+                        
+                    </div>
+                    
+                    <span asp-validation-for="ThirdName" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-user"></i></span>
+                        <input asp-for=ThirdName type="text" placeholder="Third Name" required />
+                        
+                    </div>
+                    
+
+
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                        <input asp-for=Email type="email"  placeholder="Email" required />
+                        
+                    </div>
+                    
+
+                    @{
+                        var selectList = new SelectList( new List<SelectListItem>
+                        {
+                            
+                            new SelectListItem {Text = "Search for job", Value = "Searcher"},
+                            new SelectListItem {Text = "Publish a job", Value = "Publisher"},
+                        }, "Value", "Text");
+                    }
+
+                    <span asp-validation-for="UserType" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <select asp-for=UserType  class="form-control" asp-items="@selectList">
+                            
+                        </select>
+                        <div  class="input-group-append">
+                        </div>
+                        
+                    </div>
+                    
+
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="input_field">
+                        <span><i aria-hidden="true" class="fa fa-lock"></i></span>
+                        <input asp-for=Password type="password"  placeholder="Password" required />
+                        
+                    </div>
+                    
+
+
+                    <input style="background: #dc3545;" class="button" type="submit" value="Register" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p style="color:red" class="credit">Developed by Design the way</p>
+
+@section Scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+}

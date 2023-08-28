@@ -1,0 +1,289 @@
+﻿@model VwHomeModel
+
+
+
+
+
+<main>
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="slider-active">
+            <div class="single-slider slider-height d-flex align-items-center" data-background="Frontend/img/index2.png">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-9 col-md-10">
+                            <div class="hero__caption">
+                                <h1>Get your dream job right now 💼</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Search Box -->
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <!-- form -->
+                            <form method="get" asp-controller="JobListing" asp-action="list" class="search-box">
+                                <div class="input-form">
+                                    <input name="jobNameText" type="text" placeholder="Job Tittle or keyword" required>
+                                </div>
+                                <div class="select-form">
+                                    <div class="select-itms">
+                                        <select name="locationId" asp-items="@(new SelectList( ViewBag.listLocations,"JobLocationId","JobLocationName"))" required> 
+                                            <option> Select a Country</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="search-form">
+                                    <button type="submit" class="genric-btn danger" style="line-height: 40px; padding: 13px 56px;">
+                                        Find job
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+    <!-- Our Services Start -->
+    <div class="our-services section-pad-t30"style="background: #ffffff;">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <span>FEATURED TOURS Packages</span>
+                        <h2>Browse Top Categories </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-contnet-center">
+
+                @foreach(var category in ViewBag.CategoryPaths){
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-services text-center mb-30">
+                        <a asp-controller="JobListing" asp-action="list" asp-route-categoryId="@category.Id">
+                            <img src="~/Uploads/Categories/@category.ImagePath" alt="" style="width:85px;height:86px"></a>
+                            <br>
+                        <div class="services-cap">
+                                <h5><a asp-controller="JobListing" asp-action="list" asp-route-categoryId="@category.Id">@category.CategoryName</a></h5>
+                                <span>@category.CategoryCount</span>
+                        </div>
+                    </div>
+                </div>
+                }
+
+            </div>
+            <!-- More Btn -->
+            <!-- Section Button -->
+           
+        </div>
+    </div>
+    <!-- Our Services End -->
+    <!-- Online CV Area Start -->
+    <div class="online-cv cv-bg section-overly pt-90 pb-120" data-background="https://img.freepik.com/free-vector/business-multinational-character-team-different-pose-diverse-office-worker-people-set-standing_90220-503.jpg?size=626&ext=jpg&ga=GA1.2.110078842.1690763337&semt=sph">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="cv-caption text-center">
+                        <p class="pera1">FEATURED TOURS Packages</p>
+                        <p class="pera2"> Make a Difference with Your Online Resume!</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Online CV Area End-->
+    <!-- Featured_job_start -->
+    <section class="featured-job-area feature-padding" style="background: #ffffff;">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <span>Recent Job</span>
+                        <h2>Featured Jobs</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center" >
+                
+                @*  <div class="col-xl-10" id="JobsArea">
+                    
+                     </div>
+                *@
+              @foreach(var job in Model.listJobs)
+                {
+                    <div class="col-xl-10">
+                       
+                        <div  class="single-job-items mb-30">
+                            <div class="job-items">
+                                <div class="company-img">
+                                    <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId">
+                                    <img src="/Uploads/Jobs/@job.CompanyLogo" alt="" style="width:85px;height:86px">
+                                    </a>
+                                </div>
+                          
+                                <div class="job-tittle">
+                                    <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId">
+                                        <h4>@job.JobName</h4>
+                                    </a>
+                                    <ul>
+                                        <li>@job.CompanyName</li>
+                                        <li><i class="fas fa-map-marker-alt"></i>@job.CompanyAddress</li>
+                                        <li>$@job.MinSalary - $@job.MaxSalary</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                      
+                            <div class="items-link f-right">
+
+                                @if (job.JobTypeName.Equals("Full-Time"))
+                                {
+                                    <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn danger circle arrow">@job.JobTypeName</a>
+                                }
+                                else if (job.JobTypeName.Equals("Part-Time"))
+                                {
+                                    <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn primary circle arrow">@job.JobTypeName</a>
+                                }
+                                else 
+                                {
+                                    <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn warning circle arrow">@job.JobTypeName</a>
+                                }
+                                
+
+
+                                <span>@job.PostedDate</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!-- Featured_job_end -->
+    <!-- How  Apply Process Start-->
+    <div class="apply-process-area apply-bg pt-150 pb-150" data-background="Frontend/img/gallery/how-applybg.png">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle white-text text-center">
+                        <span>Apply process</span>
+                        <h2> How it works</h2>
+                    </div>
+                </div>
+            </div>
+            <!-- Apply Process Caption -->
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-process text-center mb-30">
+                        <div class="process-ion">
+                            <span class="flaticon-search"></span>
+                        </div>
+                        <div class="process-cap">
+                            <h5>1. Search a job</h5>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-process text-center mb-30">
+                        <div class="process-ion">
+                            <span class="flaticon-curriculum-vitae"></span>
+                        </div>
+                        <div class="process-cap">
+                            <h5>2. Apply for job</h5>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-process text-center mb-30">
+                        <div class="process-ion">
+                            <span class="flaticon-tour"></span>
+                        </div>
+                        <div class="process-cap">
+                            <h5>3. Get your job</h5>
+                            <p>Sorem spsum dolor sit amsectetur adipisclit, seddo eiusmod tempor incididunt ut laborea.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- How  Apply Process End-->
+
+ 
+
+    <!-- Blog Area Start -->
+    <div class="home-blog-area blog-h-padding">
+        <div class="container">
+            <!-- Section Tittle -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-tittle text-center">
+                        <span>Our latest blog</span>
+                        <h2>Our recent news</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="home-blog-single mb-30">
+                        <div class="blog-img-cap">
+                            <div class="blog-img">
+                                <img src="~/Frontend/img/blog/home-blog1.jpg" alt="">
+                                <!-- Blog date -->
+                                <div class="blog-date text-center">
+                                    <span>24</span>
+                                    <p>Now</p>
+                                </div>
+                            </div>
+                            <div class="blog-cap">
+                                <p>|   Properties</p>
+                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                <a href="#" class="more-btn">Read more »</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <div class="home-blog-single mb-30">
+                        <div class="blog-img-cap">
+                            <div class="blog-img">
+                                <img src="~/Frontend/img/blog/home-blog2.jpg" alt="">
+                                <!-- Blog date -->
+                                <div class="blog-date text-center">
+                                    <span>24</span>
+                                    <p>Now</p>
+                                </div>
+                            </div>
+                            <div class="blog-cap">
+                                <p>|   Properties</p>
+                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                <a href="#" class="more-btn">Read more »</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog Area End -->
+
+</main>
+
+
+@section Scripts{
+
+    <script src="~/modules/helper.js"></script>
+    <script src="~/modules/joblist.js"></script>
+    <script>
+        ClsJobs.GetAllDataItems();
+    </script>
+
+}

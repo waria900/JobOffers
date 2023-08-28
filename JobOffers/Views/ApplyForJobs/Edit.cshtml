@@ -1,0 +1,126 @@
+﻿@model TbApplyForAJob
+
+
+@section Style{
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="/Admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/Admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/Admin/vendors/jvectormap/jquery-jvectormap.css">
+    <link rel="stylesheet" href="/Admin/vendors/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/Admin/vendors/owl-carousel-2/owl.carousel.min.css">
+    <link rel="stylesheet" href="/Admin/vendors/owl-carousel-2/owl.theme.default.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/Admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/Admin/images/favicon.png" />
+
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="/Admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="/Admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Applying Form</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Apply</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Form </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-8 grid-margin stretch-card" style="margin:auto;">
+            <div class="card">
+                <div class="card-body">
+
+                    <span class="text-danger">@TempData["Error"]</span>
+                    
+                    <form method="post" asp-controller="ApplyForJobs" asp-action="Save" enctype="multipart/form-data" role="form" class="forms-sample">
+
+                        <input asp-for="ApplyId" type="hidden" />
+                        <input asp-for="CurrentState" type="hidden" />
+                        <input asp-for="JobId" type="hidden" />
+                        <input asp-for="UserId" type="hidden" />
+
+
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Write a message</label>
+                            <textarea asp-for=Message type="text" class="form-control" id="exampleInputUsername1" placeholder="Write a message" style="color:#fff; ">
+                                </textarea>
+
+                            <span asp-validation-for="Message" class="text-danger"></span>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input asp-for="PdfResume" type="file" name="File" class="file-upload-default" multiple onchange="Upload.UploadDefaultImg(event)" accept=".pdf">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload File">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <a asp-controller="ApplyForJobs" asp-action="list" class="btn btn-dark">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+
+
+    <script>
+        var Upload = {
+            UploadDefaultImg: function (e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    CourseMediaImgName = file.name;
+                    CourseMediaImgBase64 = reader.result.slice(reader.result.indexOf('base64,') + 7);
+                    $("#tbImgName").html(file.name)
+                    $("#tbImgSrc").html(`<img class="thumbnail" src = "${reader.result}"  style = "width: 200px;height: 300px;border-radius: 5px;border: 1px solid #d9d9d9;padding: 1px;" />`)
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/file-upload.js"></script>
+    <script src="~/Admin/js/typeahead.js"></script>
+    <script src="~/Admin/js/select2.js"></script>
+    <!-- End custom js for this page -->
+}

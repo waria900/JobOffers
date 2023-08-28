@@ -1,0 +1,284 @@
+﻿@model TbJob
+
+
+@section Style{
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Admin/images/favicon.png" />
+}
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Form elements </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-md-8 grid-margin stretch-card" >
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Default form</h4>
+                    <p class="card-description"> Basic form layout </p>
+                    <form method="post" asp-controller="Jobs" asp-action="Save" enctype="multipart/form-data" role="form" class="forms-sample">
+
+                        <input asp-for="JobId" type="hidden" />
+                        <input asp-for="PostedDate" type="hidden" />
+                        <input asp-for="UserId" type="hidden" />
+                        <input asp-for="CurrentState" type="hidden" />
+                        <input asp-for="CompanyLogo" type="hidden" />
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Job Name</label>
+                            <input asp-for=JobName type="text" class="form-control" id="exampleInputName1" placeholder="Job Name">
+                            <span asp-validation-for="JobName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Company Name</label>
+                            <input asp-for=CompanyName type="text" class="form-control" id="exampleInputName1" placeholder="Company Name">
+                            <span asp-validation-for="CompanyName" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Company Details</label>
+                            <input asp-for=CompanyDetails type="text" class="form-control" id="exampleInputName1" placeholder="Company Details">
+                            <span asp-validation-for="CompanyDetails" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Company Address</label>
+                            <input asp-for=CompanyAddress type="text" class="form-control" id="exampleInputName1" placeholder="Company Address">
+                            <span asp-validation-for="CompanyAddress" class="text-danger"></span>
+                        </div>
+
+
+                 
+
+                        <div class="form-group">
+                            <label>Image upload</label>
+                            <input asp-for="CompanyLogo" type="file" name="Images" class="file-upload-default" multiple onchange="Upload.UploadDefaultImg(event)" accept=".jpg, .jpeg, .png, ,.gif">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                                <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Company Website</label>
+                            <input asp-for=CompanyWebsite type="text" class="form-control" id="exampleInputName1" placeholder="Company Website">
+                            <span asp-validation-for="CompanyWebsite" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Company Email</label>
+                            <input asp-for=CompanyEmail type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                            <span asp-validation-for="CompanyEmail" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName1">Min Salary</label>
+                            <input asp-for=MinSalary type="number" class="form-control" id="exampleInputName1" placeholder="MinSalary">
+                            <span asp-validation-for="MinSalary"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Max Salary</label>
+                            <input asp-for=MaxSalary type="number" class="form-control" id="exampleInputEmail3" placeholder="MaxSalary">
+                            <span asp-validation-for="MaxSalary" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label >Job Description</label>
+                            <textarea asp-for=JobDescription type="text" class="form-control" id="JobDescription" placeholder="JobDescription">
+                            </textarea>
+                            <span asp-validation-for="JobDescription" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Required Knowledge</label>
+                            <textarea asp-for=RequiredKnowledge type="text" class="form-control" id="RequiredKnowledge" placeholder="Required Knowledge">
+                                </textarea>
+                            <span asp-validation-for="RequiredKnowledge" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Education</label>
+                            <textarea asp-for=Education type="text" class="form-control" id="Education" placeholder="Education">
+                            </textarea>
+                            <span asp-validation-for="Education" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Application Date</label>
+                            <input asp-for=ApplicationDate type="date" class="form-control" id="exampleInputEmail3" placeholder="Application Date">
+                            <span asp-validation-for="ApplicationDate" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Vacancy</label>
+                            <input asp-for=Vacancy type="number" class="form-control" id="exampleInputEmail3" placeholder="Vacancy">
+                            <span asp-validation-for="Vacancy" class="text-danger"></span>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Category Name</label>
+                            <select asp-for="CategoryId" type="text" class="form-control" asp-items="@(new SelectList(ViewBag.listCategories,"CategoryId","CategoryName"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Job Type Name </label>
+                            <select asp-for=JobTypeId type="text" class="form-control" asp-items="@(new SelectList(ViewBag.listJobTypes,"JobTypeId","JobTypeName"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="JobTypeId" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="form-group">
+                            <label for="exampleInputEmail3">Job Location Name</label>
+                            <select asp-for=JobLocationId type="text" class="form-control" asp-items="@(new SelectList(ViewBag.listJobLocations,"JobLocationId","JobLocationName"))">
+                                <option>Please select one</option>
+                            </select>
+                            <span asp-validation-for="JobLocationId" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <br />
+
+
+
+
+
+
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <button class="btn btn-dark">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Image Form</h4>
+
+
+                    <span id="tbImgName"></span>
+                    <div id="tbImgSrc">
+                        <img src="/Uploads/Jobs/@Model.CompanyLogo" style="width:96%; height:300px;" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts{
+
+
+
+    <script>
+        var Upload = {
+            UploadDefaultImg: function (e) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    CourseMediaImgName = file.name;
+                    CourseMediaImgBase64 = reader.result.slice(reader.result.indexOf('base64,') + 7);
+                    $("#tbImgName").html(file.name)
+                    $("#tbImgSrc").html(`<img class="thumbnail" src = "${reader.result}"  style = "width: 200px;height: 300px;border-radius: 5px;border: 1px solid #d9d9d9;padding: 1px;" />`)
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/file-upload.js"></script>
+    <script src="~/Admin/js/typeahead.js"></script>
+    <script src="~/Admin/js/select2.js"></script>
+    <!-- End custom js for this page -->
+
+<script src="~/frontend/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("JobDescription");
+        CKEDITOR.replace("RequiredKnowledge");
+        CKEDITOR.replace("Education");
+    </script>
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

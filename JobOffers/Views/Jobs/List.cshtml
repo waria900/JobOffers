@@ -1,0 +1,100 @@
+﻿
+@model List<VwJob>
+
+
+@section Style
+    {
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Admin/vendors/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Admin/vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Admin/css/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Admin/images/favicon.png" />
+    }
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Posted Jobs </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Job</a></li>
+                <li class="breadcrumb-item active" aria-current="page">List</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Striped Table</h4>
+                    <p class="card-description">
+                        <a asp-controller="jobs" asp-action="Edit" class="btn btn-success btn-fw" style="bolde">New Offer</a>
+                    </p>
+                    <div class="table-responsive">
+                        <table id="order-listing" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="color:#fff;"> Company Logo </th>
+                                    <th style="color:#fff;"> Job Name </th>
+                                    <th style="color:#fff;"> Category Name  </th>
+                                    <th style="color:#fff;"> Posted Date </th>
+                                    <th style="color:#fff;"> Job Applicants </th>
+                                    <th style="color:#fff;"> Actions </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var job in Model)
+                                {
+                                    <tr>
+                                        <td class="py-1">
+                                            <img src="~/Uploads/Jobs/@job.CompanyLogo" alt="image">
+                                        </td>
+                                        <td style="color:#fff;"> @job.JobName </td>
+                                        <td style="color:#fff;">
+                                            @job.CategoryName
+                                        </td>
+                                        <td style="color:#fff;"> @job.PostedDate </td>
+                                        <td class="col-md-4" style="padding: 0.5rem 1rem;">
+                                            <a asp-controller="Jobs" asp-action="JobApplicants" asp-route-id="@job.JobId" style="height:max-content"
+                                           class="btn btn-success btn-fw">Show</a>
+
+                                        </td>
+                                        <td class="col-md-4" style="padding: 0.5rem 1rem;">
+                                            <a style="height:max-content"
+                                           asp-controller="Jobs" asp-action="Edit" asp-route-id="@job.JobId"
+                                           class="btn btn-info btn-fw">Edit</a>
+
+
+                                            <a asp-controller="Jobs" asp-action="Delete" asp-route-id="@job.JobId"
+                                           class="btn btn-danger btn-fw">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/vendors/datatables.net/jquery.dataTables.js"></script>
+    <script src="~/Admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/data-table.js"></script>
+    <!-- End custom js for this page -->
+}

@@ -1,0 +1,200 @@
+﻿@model VwJobListing
+
+    <main>
+
+        <!-- Hero Area Start-->
+        <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="https://img.freepik.com/free-vector/organic-flat-working-day-scenes-collection_23-2148952981.jpg?size=626&ext=jpg&ga=GA1.1.110078842.1690763337&semt=ais">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Get your job</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Area End -->
+        <!-- Job List Area Start -->
+        <div class="job-listing-area pt-120 pb-120" style="background:#fff">
+            <div class="container">
+                <div class="row">
+                    <!-- Left content -->
+                <div class="col-xl-3 col-lg-3 col-md-4">
+                    <form method="get">
+                        
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="small-section-tittle2 mb-45">
+                                        <div class="ion">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 width="20px" height="12px">
+                                                <path fill-rule="evenodd" fill="rgb(27, 207, 107)"
+                                                      d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z" />
+                                            </svg>
+                                        </div>
+                                        <h4>Filter Jobs</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Job Category Listing start -->
+                            <div class="job-category-listing mb-50">
+                                <!-- single one -->
+                                <div class="single-listing">
+                                    <div class="small-section-tittle2">
+                                        <h4>Job Category</h4>
+                                    </div>
+                                    <!-- Select job items start -->
+                                    <div class="select-job-items2">
+                                    <select name="categoryId" asp-items="@(new SelectList(Model.lstCategories,"CategoryId","CategoryName"))">
+                                        <option> All</option>
+
+                                    </select>
+                                    </div>
+                                    <!--  Select job items End-->
+                                    <!-- select-Categories start -->
+                                    <div class="select-Categories pt-80 pb-50">
+                                        <div class="small-section-tittle2">
+                                            <h4>Job Type</h4>
+                                        </div>
+                                        @foreach (var item in Model.lstJobTypes)
+                                        {
+                                            <label class="container">
+                                                @item.JobTypeName
+                                            <input type="checkbox" name="jobTypesIds" value="@item.JobTypeId">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="single-listing">
+                                    <div class="small-section-tittle2">
+                                        <h4>Job Location</h4>
+                                    </div>
+                                    <div class="select-job-items2">
+                                    <select name="locationId" asp-items="@(new SelectList(Model.lstJobLocations,"JobLocationId","JobLocationName"))">
+                                        <option> All</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <div class="single-listing">
+                                    <div class="small-section-tittle2 pt-80">
+                                        <h4>Sort By Salary</h4>
+                                    </div>
+                                    <!-- Select job items start -->
+                                <div class="select-job-items2 pb-80">
+                                        <select name="salary">
+                                        <option value="All">All</option>
+                                            <option value="MaxLength">Max Salary</option>
+                                            <option value="MinLength">Min Salary</option>
+                                        </select>
+                                    </div>
+                                </div>
+     
+                                
+                            </div>
+                            <button type="submit" class="genric-btn primary-border">Search</button>
+                    </form>
+                </div>
+                        <!-- Job Category Listing End -->
+                    <!-- Right content -->
+                    <div class="col-xl-9 col-lg-9 col-md-8">
+                        <!-- Featured_job_start -->
+                        <section class="featured-job-area">
+                            <div class="container">
+                                <!-- Count of Job list Start -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="count-job mb-35">
+                                        <span>@Model.jobNums Jobs found</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Count of Job list End -->
+                                <!-- single-job-content -->
+                            @foreach (var job in Model.lstAllJobs)
+                            {
+                                <div class="single-job-items mb-30">
+                                    <div class="job-items">
+                                        <div class="company-img">
+                                            <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId"><img src="/Uploads/Jobs/@job.CompanyLogo" alt="" style="width:85px;height:86px"></a>
+                                           
+                                        </div>
+                                        
+                                        <div class="job-tittle">
+                                            <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId"><h4>@job.JobName</h4></a>
+                                            <ul>
+                                                <li>@job.CompanyName</li>
+                                                <li><i class="fas fa-map-marker-alt"></i>@job.CompanyAddress</li>
+                                                <li>$@job.MinSalary - $@job.MaxSalary</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="items-link f-right">
+
+                                        @if (job.JobTypeName.Equals("Full-Time"))
+                                        {
+                                            <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn danger circle arrow">@job.JobTypeName</a>
+                                        }
+                                        else if (job.JobTypeName.Equals("Part-Time"))
+                                        {
+                                            <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn primary circle arrow">@job.JobTypeName</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="JobDetails" asp-action="VwJobDetails" asp-route-JobId="@job.JobId" class="genric-btn warning circle arrow">@job.JobTypeName</a>
+                                        }
+                                        <span>@job.PostedDate</span>
+                                    </div>
+                                </div>
+                            }
+                                
+
+                            </div>
+                        </section>
+                        <!-- Featured_job_end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Pagination Start  -->
+        <div class="pagination-area pb-115 text-center" style="background:#fff">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="single-wrap d-flex justify-content-center">
+                            @if (Model.TotalPages > 1)
+                            {
+                                <nav>
+                                    <ul class="pagination">
+                                        <li class="page-item @(Model.PageNumber == 1 ? "disabled" : "")">
+                                            <a class="page-link" href="?pageNumber=@(Model.PageNumber - 1)">Previous</a>
+                                        </li>
+
+                                        @for (int i = 1; i <= Model.TotalPages; i++)
+                                        {
+                                            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                                <a class="page-link" href="?pageNumber=@i">@i</a>
+                                            </li>
+                                        }
+
+                                        <li class="page-item @(Model.PageNumber == Model.TotalPages ? "disabled" : "")">
+                                            <a class="page-link" href="?pageNumber=@(Model.PageNumber + 1)">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Pagination End  -->
+
+
+    </main>

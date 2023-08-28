@@ -1,0 +1,115 @@
+﻿@model VwJob
+
+
+<main>
+
+    <!-- Hero Area Start-->
+    <div class="slider-area ">
+        <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="https://img.freepik.com/free-vector/people-waiting-job-interview_23-2148612931.jpg?size=626&ext=jpg&ga=GA1.2.110078842.1690763337&semt=ais" style="background-image: url(&quot;/frontend/img/hero/about.jpg&quot;);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="hero-cap text-center">
+                            <h2>UI/UX Designer</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero Area End -->
+    <!-- job post company Start -->
+    <div class="job-post-company pt-120 pb-120" style="background: #fff">
+        <div class="container">
+            <div class="row justify-content-between">
+                <!-- Left Content -->
+                <div class="col-xl-7 col-lg-8">
+                    <!-- job single -->
+                    <div class="single-job-items mb-50">
+                        <div class="job-items">
+                            <div class="company-img company-img-details">
+                                <a href="#"><img src="~/Uploads/Jobs/@Model.CompanyLogo" alt="" style="width:85px;height:86px"></a>
+                            </div>
+                            <div class="job-tittle">
+                                <a href="#">
+                                    <h4>@Model.JobName</h4>
+                                </a>
+                                <ul>
+                                    <li>@Model.CompanyName</li>
+                                    <li><i class="fas fa-map-marker-alt"></i>@Model.CompanyAddress</li>
+                                    <li>$@Model.MinSalary - $@Model.MaxSalary</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- job single End -->
+
+                    <div class="job-post-details">
+                        <div class="post-details1 mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Job Description</h4>
+                            </div>
+                            <p>
+                                @Html.Raw(Model.JobDescription)
+                            </p>
+                        </div>
+                        <div class="post-details2  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Required Knowledge, Skills, and Abilities</h4>
+                            </div>
+                            <div>
+                                @Html.Raw(Model.RequiredKnowledge)
+                            </div>
+                        </div>
+                        <div class="post-details2  mb-50">
+                            <!-- Small Section Tittle -->
+                            <div class="small-section-tittle">
+                                <h4>Education + Experience</h4>
+                            </div>
+                            <div>
+                                @Html.Raw(Model.Education)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Right Content -->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="post-details3  mb-50" style="border: 3px solid #a31b1b47; border-radius:12px">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Job Overview</h4>
+                        </div>
+                        <ul>
+                            <li>Posted date : <span>@Model.PostedDate</span></li>
+                            <li>Location : <span>@Model.JobLocationName</span></li>
+                            <li>Vacancy : <span>@Model.Vacancy</span></li>
+                            <li>Job nature : <span>@Model.JobTypeName</span></li>
+                            <li>Application date : <span>@Model.ApplicationDate</span></li>
+                        </ul>
+                        <div class="apply-btn2">
+                            <a asp-controller="ApplyForJobs" asp-action="edit" asp-route-jobId="@Model.JobId" class="btn">Apply Now</a>
+                        </div>
+                    </div>
+                    <div class="post-details4  mb-50">
+                        <!-- Small Section Tittle -->
+                        <div class="small-section-tittle">
+                            <h4>Company Information</h4>
+                        </div>
+                        
+                        <p>@Model.CompanyDetails.</p>
+                        <ul>
+                           
+                            <li>Web : <span>@Model.CompanyWebsite</span></li>
+                            <li>Email: <span>@Model.CompanyEmail</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- job post company End -->
+
+</main>

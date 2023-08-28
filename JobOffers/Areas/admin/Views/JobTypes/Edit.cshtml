@@ -1,0 +1,74 @@
+﻿@model TbJobType
+
+
+@section Style{
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="~/Admin/vendors/select2/select2.min.css">
+    <link rel="stylesheet" href="~/Admin/vendors/select2-bootstrap-theme/select2-bootstrap.min.css">
+    <!-- End plugin css for this page -->
+}
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Job Type Form</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Job Type</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Form </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row">
+        <div style="margin:auto;" class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+
+
+                    <form method="post" asp-controller="JobTypes" asp-action="Save" enctype="multipart/form-data" role="form" class="forms-sample">
+
+                        <input asp-for="JobTypeId" type="hidden" />
+                        <input asp-for="CurrentState" type="hidden" />
+                        
+
+
+                        <div class="form-group">
+                            <label for="exampleInputUsername1">Job Type Name</label>
+                            <input asp-for=JobTypeName type="text" class="form-control" id="exampleInputUsername1" placeholder="Job Type Name" style="color:#fff; ">
+
+                            <span asp-validation-for="JobTypeName" class="text-danger"></span>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        <a asp-controller="JobTypes" asp-action="list" class="btn btn-dark">Cancel</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+       
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+    <!-- Plugin js for this page -->
+    <script src="~/Admin/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/vendors/typeahead.js/typeahead.bundle.min.js"></script>
+    <!-- End plugin js for this page -->
+    <!-- Custom js for this page -->
+    <script src="~/Admin/js/file-upload.js"></script>
+    <script src="~/Admin/js/typeahead.js"></script>
+    <script src="~/Admin/js/select2.js"></script>
+    <!-- End custom js for this page -->
+}
