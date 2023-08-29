@@ -46,4 +46,4 @@ In addition, it is dynamic and fully responsive.
    
 • Admin Template:
  
-   https://lnkd.in/d36Um8B3
+    https://lnkd.in/d36Um8B3
