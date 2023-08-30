@@ -47,3 +47,8 @@ In addition, it is dynamic and fully responsive.
 • Admin Template:
  
     https://lnkd.in/d36Um8B3
+
+
+Home Page:
+
+![Home_page](https://github.com/waria900/JobOffers/assets/87630368/2ff7213e-a3f0-42f5-92eb-297c86fff8ee)
