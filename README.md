@@ -59,11 +59,12 @@ Filtering Page:
 ![Filtering_page](https://github.com/waria900/JobOffers/assets/87630368/bdd52017-e82c-4110-9414-df1e077bb66c)
 
 
-Admin Pannel:
-
-![Admin_pannel](https://github.com/waria900/JobOffers/assets/87630368/9ba5cba9-7e1c-4187-bc85-69cd01c6204c)
-
-
 Job Details Page:
 
 ![Details](https://github.com/waria900/JobOffers/assets/87630368/5de86c27-626c-4ede-a686-5eb128f4daa9)
+
+
+
+Admin Pannel:
+
+![Admin_pannel](https://github.com/waria900/JobOffers/assets/87630368/9ba5cba9-7e1c-4187-bc85-69cd01c6204c)
