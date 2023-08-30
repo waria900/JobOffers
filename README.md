@@ -52,3 +52,13 @@ In addition, it is dynamic and fully responsive.
 Home Page:
 
 ![Home_page](https://github.com/waria900/JobOffers/assets/87630368/2ff7213e-a3f0-42f5-92eb-297c86fff8ee)
+
+
+Filtering Page:
+
+![Filtering_page](https://github.com/waria900/JobOffers/assets/87630368/bdd52017-e82c-4110-9414-df1e077bb66c)
+
+
+Admin Pannel:
+
+![Admin_pannel](https://github.com/waria900/JobOffers/assets/87630368/9ba5cba9-7e1c-4187-bc85-69cd01c6204c)
