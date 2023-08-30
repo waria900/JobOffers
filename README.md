@@ -42,11 +42,11 @@ In addition, it is dynamic and fully responsive.
 
 • Job Offers Template:
 
-    https://lnkd.in/d_m_2ZqS
+    [https://lnkd.in/d_m_2ZqS](https://themewagon.com/themes/free-bootstrap-4-html5-job-portal-website-template-jobfinderportal/)
    
 • Admin Template:
  
-    https://lnkd.in/d36Um8B3
+    [https://lnkd.in/d36Um8B3](https://themewagon.com/themes/corona-free-responsive-bootstrap-4-admin-dashboard-template/)
 
 
 Home Page:
