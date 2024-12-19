@@ -45,7 +45,7 @@ namespace JobOffers.Areas.admin.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", category);
 
-            category.ImageName = await Helper.UploadImage(Images,"Categories");
+            category.ImageName = Images.Count() == 0 ? category.ImageName :  await Helper.UploadImage(Images,"Categories");
 
             _oClsCategories.Save(category);
 

@@ -20,9 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Services\" />
     <Folder Include="wwwroot\Downloads\Resumes\" />
     <Folder Include="wwwroot\Uploads\Categories\" />
     <Folder Include="wwwroot\Uploads\Jobs\" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

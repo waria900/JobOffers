@@ -69,7 +69,7 @@ namespace Bl
             }
         }
 
-
+        // This is for user's posted jobs.
         public List<VwJob> GetUserById(string userId)
         {
             try
@@ -83,6 +83,7 @@ namespace Bl
             }
         }
 
+        
         public VwJob GetJobById(int id)
         {
             try

@@ -56,7 +56,9 @@ namespace JobOffers.Controllers
             if (!ModelState.IsValid)
                 return View("Edit",job);
 
-            job.CompanyLogo = await Helper.UploadImage(Images, "Jobs");
+                job.CompanyLogo = Images.Count() == 0 ? job.CompanyLogo : job.CompanyLogo = await Helper.UploadImage(Images, "Jobs");
+
+
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             job.UserId = userId;

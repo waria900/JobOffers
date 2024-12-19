@@ -13,7 +13,6 @@ namespace JobOffers.Areas.admin.Controllers
     {
 
         IJobs _oClsJobs;
-
         IApplyForJob _oClsApplyForJob;
 
         public JobsController(IJobs oClsJobs,  IApplyForJob oClsApplyForJob)

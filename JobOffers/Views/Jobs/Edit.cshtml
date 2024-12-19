@@ -77,7 +77,7 @@
                             <label>Image upload</label>
                             <input asp-for="CompanyLogo" type="file" name="Images" class="file-upload-default" multiple onchange="Upload.UploadDefaultImg(event)" accept=".jpg, .jpeg, .png, ,.gif">
                             <div class="input-group col-xs-12">
-                                <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
+                                <input  type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
                                 <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
@@ -183,7 +183,7 @@
 
 
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-dark">Cancel</button>
+                        <a asp-controller="Jobs" asp-action="list" class="btn btn-dark">Cancel</a>
                     </form>
                 </div>
             </div>

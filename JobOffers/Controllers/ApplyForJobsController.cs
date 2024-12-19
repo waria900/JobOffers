@@ -56,7 +56,7 @@ namespace JobOffers.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", apply);
 
-            apply.PdfResume = await Helper.UploadFile(File, "Resumes");
+            apply.PdfResume = File.Count() == 0 ? apply.PdfResume :  await Helper.UploadFile(File, "Resumes");
 
             apply.UserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 

@@ -50,6 +50,8 @@ namespace JobOffers.Areas.admin.Controllers
 
             return RedirectToAction("List");
         }
+       
+        
         public IActionResult Delete(int id)
         {
 

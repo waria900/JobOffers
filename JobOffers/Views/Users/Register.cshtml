@@ -8,12 +8,17 @@
         </div>
         <div style="margin: 19px 42px;" class="row clearfix">
             <div class="">
+
+
+                @*<span class="text-danger"> @TempData["error"]</span>
+                <span class="text-primary"> @TempData["EmailCheck"]</span>*@
+                <br/>
+                <br/>
                 <form asp-controller="Users" asp-action="Register" method="post" role="form">
                    
                     <input type="hidden" asp-for="ReturnUrl" />
 
-                    <span class="text-danger"> @TempData["error"]</span>
-                    <span class="text-primary"> @TempData["Congrants"]</span>
+                    
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                     <div class="input_field">
                         <span><i aria-hidden="true" class="fa fa-user"></i></span>

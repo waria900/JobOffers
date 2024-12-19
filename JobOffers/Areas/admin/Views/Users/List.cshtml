@@ -1,7 +1,10 @@
 ﻿@model List<ApplicationUser>
 @inject UserManager<ApplicationUser> _userManager
 
-
+@section Style{
+    <!-- For Sweat Alert -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.css">
+}
 
 <div class="content-wrapper">
     <div class="page-header">
@@ -18,7 +21,9 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Users Table</h4>
-
+                    <br/>
+                    <h4 class="card-title">@ViewBag.UserId</h4>
+                    <br/>
                     <div class="table-responsive">
                         <table id="example1" class="table table-striped">
                             <thead>
@@ -28,7 +33,7 @@
                                     <th style="color:#fff;"> User Name  </th>
                                     <th style="color:#fff;"> Email </th>
                                     <th style="color:#fff;"> Role </th>
-
+                                    <th style="color:#fff;"> Actions </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,7 +50,13 @@
                                         <td style="color:#fff;"> @user.UserName </td>
                                         <td style="color:#fff;"> @user.Email </td>
                                         <td style="color:#fff;"> @role.FirstOrDefault() </td>
-                         
+                                        <td class="col-md-4" style="padding: 0.5rem 1rem;">
+                                          
+                                            @*<a asp-controller="users" asp-action="Delete" asp-route-id="@user.Id"
+                                           class="btn btn-danger btn-fw">Delete</a>*@
+
+                                            <button class="btn btn-danger btn-fw users" data-userid="@user.Id">Delete</button>
+                                        </td>
 
                                     </tr>
                                 }
@@ -60,6 +71,41 @@
 
 @section Scripts
     {
+
+    <!-- For Sweat Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.9/dist/sweetalert2.min.js"></script>
+    <!-- For Sweat Alert Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- For Sweat Alert Include JS -->
+    <script>
+        $(document).ready(function () {
+            // Handle delete button click
+            $(".users").on("click", function () {
+                var id = $(this).data("userid");
+
+                Swal.fire({
+                    title: '<span style="color: black;">Confirm Delete</span>',
+                    text: 'Are you sure you want to delete this one?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // User confirmed the delete, send the user ID to the "Delete" action
+                        window.location.href = "/Admin/Users/Delete?id=" + id;
+                    }
+                });
+            });
+        });
+
+    </script>
+
+
+
     <!-- DataTables  & Plugins -->
     <script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/Admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

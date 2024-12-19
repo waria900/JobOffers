@@ -3,6 +3,10 @@ using Bl;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using NETCore.MailKit.Infrastructure.Internal;
+using NETCore.MailKit.Extensions;
+//using NETCore.MailKit.Infrastructure.Internal;
+//using NETCore.MailKit.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,10 +31,20 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireUppercase = true;
     options.User.RequireUniqueEmail = true;
 
+    // For Email Confirmation.
+    options.SignIn.RequireConfirmedEmail = true;
+
+    options.SignIn.RequireConfirmedAccount= true;
+
     //options.SignIn.RequireConfirmedPhoneNumber = true;
 
     // To conntect (Microsoft Identitiy) with (Entity Framewrok).
-}).AddEntityFrameworkStores<JobOffersContext>();
+                                                 // For Email Confirmation. 
+}).AddEntityFrameworkStores<JobOffersContext>().AddDefaultTokenProviders();
+
+
+
+
 
 
 // -- ReturnUrl --
@@ -56,6 +70,18 @@ builder.Services.AddScoped< IjobLocations,ClsJobLocations>();
 builder.Services.AddScoped<IJobTypes, ClsJobTypes>();
 builder.Services.AddScoped<ICategories, ClsCategories>();
 builder.Services.AddScoped<IApplyForJob, ClsApplyForJob>();
+
+// For Email Confirmation.
+builder.Services.AddScoped<IEmailSender, ClsEmailConfirm>();
+
+
+
+// MailKit For Email:
+
+var mailKitOptions = builder.Configuration.GetSection("Email").Get<MailKitOptions>();
+builder.Services.AddMailKit(config => config.UseMailKit(mailKitOptions));
+
+
 
 
 var app = builder.Build();

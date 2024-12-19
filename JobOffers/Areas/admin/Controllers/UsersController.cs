@@ -24,5 +24,36 @@ namespace JobOffers.Areas.admin.Controllers
             var users = await _userManager.Users.ToListAsync();
             return View(users);
         }
+
+
+        public async Task<IActionResult> Delete(string id)
+        {
+
+
+            var user = await _userManager.FindByIdAsync(id);
+            if(user != null) 
+            {
+               var result = await _userManager.DeleteAsync(user);
+                if (result.Succeeded) 
+                {
+                    return RedirectToAction("List");
+                }
+
+                foreach(var error in result.Errors) 
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+                return RedirectToAction("List");
+            }
+            else
+            {
+                ViewBag.UserId = $"User with id {user} can not be found";
+                return RedirectToAction("List");
+            }
+
+            
+
+        }
+
     }
 }
